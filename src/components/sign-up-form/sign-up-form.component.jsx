@@ -1,8 +1,13 @@
 import { useState } from "react";
+import Button from "../button/button.component";
+import FormInput from "../form-input/form-input.component";
+
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
+
+import "./sign-up-form.styles.scss";
 
 const defaultFormFields = {
   displayName: "",
@@ -15,10 +20,9 @@ const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
-
-const resetFormFields = () => {
-  setFormFields(defaultFormFields);
-}
+  const resetFormFields = () => {
+    setFormFields(defaultFormFields);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -51,11 +55,12 @@ const resetFormFields = () => {
   };
 
   return (
-    <div>
-      <h1> Sign-up with your e-mail and password. </h1>
+    <div className="sign-up-container">
+      <h2>Dont have an account?</h2>
+      <span> Sign-up with your e-mail and password. </span>
       <form onSubmit={() => {}}>
-        <label>Display Name</label>
-        <input
+        <FormInput
+          label="Display Name"
           type="text"
           required
           onChange={handleChange}
@@ -63,8 +68,8 @@ const resetFormFields = () => {
           value={displayName}
         />
 
-        <label>E-mail</label>
-        <input
+        <FormInput
+          label="E-mail"
           type="email"
           required
           onChange={handleChange}
@@ -72,8 +77,8 @@ const resetFormFields = () => {
           value={email}
         />
 
-        <label>Password</label>
-        <input
+        <FormInput
+          label="Password"
           type="password"
           required
           onChange={handleChange}
@@ -81,8 +86,8 @@ const resetFormFields = () => {
           value={password}
         />
 
-        <label>Confirm Password</label>
-        <input
+        <FormInput
+          label="Confirm Password"
           type="password"
           required
           onChange={handleChange}
@@ -90,7 +95,7 @@ const resetFormFields = () => {
           value={confirmPassword}
         />
 
-        <button type="submit">Sign Up</button>
+        <Button type="submit">Sign Up</Button>
       </form>
     </div>
   );
